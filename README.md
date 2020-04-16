@@ -7,6 +7,8 @@ unfinished...
 ├── api
 │   └── [source code (python)]
 ├── docker
+│   ├── aws
+│   │   └── Dockerfile
 │   ├── go_server
 │   │   └── [Dockerfile]
 │   ├── memo.txt
@@ -57,11 +59,20 @@ unfinished...
     フィールドを構成するgo-langファイル  
 
 ## dockerfile
-webapp も DQN学習　のも，docker/ubuntu/ にあるDockerfileを使ってください
+DQN学習は, (cpu環境では)docker/ubuntu/ にあるDockerfileを使ってください  
+(gpu環境では)docker/aws/ にあるDockerfileを使ってください  
+
 ## docker を立ち上げる時の注意
+### localで作業をする場合
 > docker run -it -d -p 8001:8000 -v [host側の作業ディレクトリ(このjintoriGameのディレクトリ)]:/home/develop --name [image名] [container名] bash  
 
 でrunしてください.
+
+### awsで作業をする場合
+* ローカル(ホスト)のディレクトリにコンテナのディレクトリをマウントできるなら，'localで作業をする場合'と同じ操作をしてください．  
+* ローカル(ホスト)のディレクトリにコンテナのディレクトリをマウントできないなら，このようにportだけ通してください．
+> docker run -it -d -p 8001:8000 --name [image名] [container名] bash 
+  
 
 ## dqnの実行の仕方
 1.server-field/jintori-field.go を 'go run jintori-field.go'で実行する  
